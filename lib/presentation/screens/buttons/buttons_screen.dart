@@ -77,8 +77,35 @@ class _ButtonsView extends StatelessWidget {
               ),
             ),
 
+            CustomButton(colors: colors.primary),
+
             //TODO: Custom Button
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  final Color colors;
+  const CustomButton({super.key, required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Material(
+        color: colors,
+        child: InkWell(
+          onTap: () {},
+          child: Padding(
+            padding: EdgeInsetsGeometry.symmetric(horizontal: 20, vertical: 10),
+            child: Text(
+              'Hola mi custom button',
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
         ),
       ),
     );
