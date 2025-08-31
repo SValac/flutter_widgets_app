@@ -45,7 +45,7 @@ class _CustomListTile extends StatelessWidget {
       title: Text(item.title),
       subtitle: Text(item.subtitle),
       onTap: () {
-        //TODO : navigate to toehr screen
+        Navigator.pushNamed(context, item.link);
       },
     );
   }
