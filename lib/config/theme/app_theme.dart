@@ -4,6 +4,8 @@ final colorList = <Color>[
   Colors.red,
   Colors.green,
   Colors.blue,
+  Colors.cyan,
+  Colors.teal,
   Colors.yellow,
   Colors.orange,
   Colors.purple,
