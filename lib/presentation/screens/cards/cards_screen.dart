@@ -25,13 +25,19 @@ class CardsScreen extends StatelessWidget {
 class _CardsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ...cards.map(
-          (card) =>
-              _CardType1(elevation: card['elevation'], label: card['label']),
-        ),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ...cards.map(
+            (card) =>
+                _CardType1(elevation: card['elevation'], label: card['label']),
+          ),
+          ...cards.map(
+            (card) =>
+                _CardType2(elevation: card['elevation'], label: card['label']),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -56,6 +62,44 @@ class _CardType1 extends StatelessWidget {
                 icon: const Icon(Icons.more_vert_outlined),
                 onPressed: () {},
               ),
+            ),
+            Align(alignment: Alignment.topLeft, child: Text(label)),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class _CardType2 extends StatelessWidget {
+  final double elevation;
+  final String label;
+
+  const _CardType2({required this.elevation, required this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = Theme.of(context).colorScheme;
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(12)),
+        side: BorderSide(color: colors.outline),
+      ),
+      elevation: elevation,
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(10, 5, 10, 10),
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topRight,
+              child: IconButton(
+                icon: const Icon(Icons.more_vert_outlined),
+                onPressed: () {},
+              ),
+            ),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text('$label - outlined'),
             ),
           ],
         ),
