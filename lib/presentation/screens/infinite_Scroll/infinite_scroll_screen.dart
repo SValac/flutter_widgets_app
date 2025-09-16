@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class InfiniteScrollScreen extends StatefulWidget {
   static const name = 'infinite_scroll_screen';
@@ -15,20 +16,29 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Infinite Scroll & Pull to Refresh')),
-      body: ListView.builder(
-        itemCount: imagesIds.length,
-        itemBuilder: (context, index) {
-          return FadeInImage(
-            width: double.infinity,
-            height: 300,
-            fit: BoxFit.cover,
-            placeholder: AssetImage('assets/images/jar-loading.gif'),
-            image: NetworkImage(
-              'https://picsum.photos/id/${imagesIds[index]}/500/300',
-            ),
-          );
-        },
+      backgroundColor: Colors.black,
+      body: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        removeBottom: true,
+        child: ListView.builder(
+          itemCount: imagesIds.length,
+          itemBuilder: (context, index) {
+            return FadeInImage(
+              width: double.infinity,
+              height: 300,
+              fit: BoxFit.cover,
+              placeholder: AssetImage('assets/images/jar-loading.gif'),
+              image: NetworkImage(
+                'https://picsum.photos/id/${imagesIds[index]}/500/300',
+              ),
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => context.pop(),
+        child: Icon(Icons.arrow_back_ios_new_outlined),
       ),
     );
   }
