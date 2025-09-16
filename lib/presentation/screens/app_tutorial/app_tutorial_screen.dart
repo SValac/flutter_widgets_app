@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SlidesInfo {
   final String titile;
@@ -39,17 +40,30 @@ class AppTutorialScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageView(
-        physics: BouncingScrollPhysics(),
-        children: slides
-            .map(
-              (slide) => _Slide(
-                title: slide.titile,
-                caption: slide.caption,
-                imageUrl: slide.imageUrl,
-              ),
-            )
-            .toList(),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          PageView(
+            physics: BouncingScrollPhysics(),
+            children: slides
+                .map(
+                  (slide) => _Slide(
+                    title: slide.titile,
+                    caption: slide.caption,
+                    imageUrl: slide.imageUrl,
+                  ),
+                )
+                .toList(),
+          ),
+          Positioned(
+            right: 20,
+            top: 50,
+            child: TextButton(
+              onPressed: () => context.pop(),
+              child: const Text('Salir'),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -68,6 +82,25 @@ class _Slide extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    // final tileStyle = Theme.of(context).textTheme.titleLarge;
+    // final captionStyle = Theme.of(context).textTheme.bodySmall;
+    final TextTheme(:titleLarge, :bodySmall) = Theme.of(context).textTheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Image(image: AssetImage(imageUrl)),
+            const SizedBox(height: 20),
+            Text(title, style: titleLarge),
+            SizedBox(height: 10),
+            Text(caption, style: bodySmall),
+          ],
+        ),
+      ),
+    );
   }
 }
