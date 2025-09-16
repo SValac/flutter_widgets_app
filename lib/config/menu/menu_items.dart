@@ -57,4 +57,10 @@ const appMenuItems = <MenuItem>[
     link: '/tutorial',
     icon: Icons.library_books_outlined,
   ),
+  MenuItem(
+    title: 'Infinite Scroll & Pull to Refresh',
+    subtitle: 'Listas infinitas y pull to refresh',
+    link: '/infinite-scroll',
+    icon: Icons.list_alt_rounded,
+  ),
 ];
