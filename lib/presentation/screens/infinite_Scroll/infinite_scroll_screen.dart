@@ -82,6 +82,8 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
         removeBottom: true,
         child: RefreshIndicator(
           onRefresh: onRefresh,
+          edgeOffset: 10,
+          strokeWidth: 2,
           child: ListView.builder(
             controller: scrollController,
             itemCount: imagesIds.length,
