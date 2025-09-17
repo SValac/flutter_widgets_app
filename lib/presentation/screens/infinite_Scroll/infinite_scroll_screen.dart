@@ -44,11 +44,11 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     await Future.delayed(const Duration(seconds: 2));
     addFiveImages();
     isLoading = false;
-    // RODO revisar si esta montado el widget / componente
+
     if (!isMounted) return;
     setState(() {});
 
-    // TODO mover el scroll
+    moveScrollToBottom();
   }
 
   void addFiveImages() {
@@ -70,6 +70,19 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
     addFiveImages();
     isLoading = false;
     setState(() {});
+  }
+
+  void moveScrollToBottom() {
+    //  if the scroll is 150 pixels or more away from the bottom, don't do anything
+    if (scrollController.position.pixels + 150 <=
+        scrollController.position.maxScrollExtent)
+      return;
+
+    scrollController.animateTo(
+      scrollController.position.pixels + 150,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 
   @override
