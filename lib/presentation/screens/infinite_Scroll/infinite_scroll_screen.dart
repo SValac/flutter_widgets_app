@@ -88,7 +88,7 @@ class _InfiniteScrollScreenState extends State<InfiniteScrollScreen> {
                 infinite: true,
                 child: const Icon(Icons.refresh_rounded),
               )
-            : Icon(Icons.arrow_back_ios_new_outlined),
+            : FadeIn(child: Icon(Icons.arrow_back_ios_new_outlined)),
       ),
     );
   }
